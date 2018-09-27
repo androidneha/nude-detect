@@ -34,7 +34,18 @@ class NudeDetect
         $url = '1.0/feedback.json';
         if (filter_var($image, FILTER_VALIDATE_URL)) {
             try {
-                $r = $this->http->request('GET', $url, ['query' => ['api_user' => $this->api_user, 'api_secret' => $this->api_secret, 'model' => $model, 'class' => $modelClass, 'url' => $image]]);
+                $r = $this->http->request('GET',
+                    $url,
+                    [
+                        'query' =>
+                            [
+                                'api_user' => $this->api_user,
+                                'api_secret' => $this->api_secret,
+                                'model' => $model,
+                                'class' => $modelClass, 'url' => $image
+                            ]
+                    ]
+                );
             } catch (\GuzzleHttp\Exception\GuzzleException $e) {
                 var_dump($e);
                 exit;
@@ -44,7 +55,24 @@ class NudeDetect
         else {
             $file = fopen($image, 'r');
             try {
-                $r = $this->http->request('POST', $url, ['query' => ['api_user' => $this->api_user, 'api_secret' => $this->api_secret, 'model' => $model, 'class' => $modelClass], 'multipart' => [['name' => 'media', 'contents' => $file]]]);
+                $r = $this->http->request('POST',
+                    $url,
+                    [
+                        'query' =>
+                            [
+                                'api_user' => $this->api_user,
+                                'api_secret' => $this->api_secret,
+                                'model' => $model,
+                                'class' => $modelClass],
+                                'multipart' =>
+                                    [
+                                        [
+                                            'name' => 'media',
+                                            'contents' => $file
+                                        ]
+                                    ]
+                    ]
+                );
             } catch (\GuzzleHttp\Exception\GuzzleException $e) {
                 var_dump($e);
                 exit;
