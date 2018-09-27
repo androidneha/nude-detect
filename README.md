@@ -9,7 +9,7 @@ composer install
 ```
 Create your own .env by simply using .env.example
 
-For credentials you can visit [Sightengine](#https://sightengine.com/)
+For credentials you can visit [Sightengine](https://sightengine.com/)
 
 Finally,
 
